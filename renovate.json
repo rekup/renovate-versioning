@@ -1,0 +1,37 @@
+{
+    "$schema":"https://docs.renovatebot.com/renovate-schema.json",
+    "extends":[
+      "config:base"
+    ],
+    "labels":[
+      "renovate"
+    ],
+    "branchConcurrentLimit":0,
+    "prHourlyLimit":0,
+    "prConcurrentLimit":0,
+    "regex":{
+      "enabled":true
+    },
+    "regexManagers":[
+        {
+            "fileMatch":[
+              "^openldap.spec"
+            ],
+            "matchStrings":[
+              "Version:\\s+(?<currentValue>[\\d\\.]+)"
+            ],
+            "datasourceTemplate":"github-tags",
+            "lookupNameTemplate":"openldap/openldap",
+            "depNameTemplate":"openldap"
+        }
+    ],
+    "packageRules":[
+        {
+            "matchPackageNames":[
+              "openldap"
+            ],
+            "extractVersion":"^OPENLDAP_REL_ENG_(?<version>[\\d_]+)",
+            "versioning": "regex:^(?<major>\\d)[_\\.](?<minor>\\d)[_\\.](?<patch>\\d)$"
+          }
+    ]
+  }
